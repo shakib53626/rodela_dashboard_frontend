@@ -70,7 +70,6 @@ const status = ref('active');
 const is_top = ref('0');
 const route = useRoute();
 const handleFileChange = (e) =>{
-  console.log(e.target.files[0]);
   image.value = e.target.files[0];
 }
 
@@ -78,14 +77,25 @@ const submit = async () => {
   if(!name.value || !image.value){
       alert("Plase fill the filed");
   }else{
-    const formdata = new FormData();
-    formdata.append('name', name.value)
-    formdata.append('image', image.value)
-    formdata.append('status', status.value)
-    formdata.append('is_top', is_top.value)
-
-    const res = await axios.post("/admin/brands", formdata);
     
+    try {
+      const formdata = new FormData();
+      formdata.append('name', name.value)
+      formdata.append('image', image.value)
+      formdata.append('status', status.value)
+      formdata.append('is_top', is_top.value)
+
+      const response = await axios.post("/admin/brands", formdata);
+      console.log(response.data);
+      if(response.data.success){
+        alert("Image Upload Successfully");
+        name.value = '';
+        image.value = '';
+      }
+      router.push({ name: 'brands' }); // Use router.push to navigate
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
 }
 

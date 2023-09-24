@@ -1,3 +1,29 @@
+
+
+<script setup>
+  import axios from 'axios';
+  import {ref, onMounted} from 'vue';
+
+  const brandData = ref([]);
+  const getImages = async() => {
+    try {
+      const res = await axios.get('/admin/brands');
+      brandData.value = res.data.result.data;
+      console.log(brandData.value);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+  }
+
+  const deleteBrand = async(id) =>{
+    // const res = await axios.delete(`/admin/brands/${id}`)
+    alert(`Delete Code is Not Updated. Delete Id is = ${id}`)
+  }
+
+  onMounted(() => {
+    getImages();
+  });
+</script>
 <template>
   <div class="row">
     <div class="col-sm-12">
@@ -5,546 +31,55 @@
         <div class="card-body">
           <div>
             <div class="table-responsive table-desi table-product">
-              <table class="table table-1d all-package">
+              <table class="table table-bordered all-package">
                 <thead>
                   <tr>
-                    <th>Product Image</th>
-                    <th>Product Name</th>
-                    <th>Category</th>
-                    <th>Current Qty</th>
-                    <th>Price</th>
-                    <th>Published</th>
-                    <th>Option</th>
+                    <th class="w-10">SL</th>
+                    <th>Brand Logo Image</th>
+                    <th>Brand Name</th>
+                    <th>Brand Position</th>
+                    <th>Brand Status</th>
+                    <th>Action  </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr>
+                  <tr v-for="(brand, index) in brandData" :key="index">
+                    <td>{{ index +=1 }}</td>
                     <td>
                       <img
-                        src="@/assets/images/profile/4.jpg"
+                        :src="`http://127.0.0.1:8000/images/brands/${brand.image}`"
                         class="img-fluid"
                         alt=""
+                        width="50"
                       />
                     </td>
 
                     <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
+                      <a href="javascript:void(0)">{{ brand.name }}</a>
                     </td>
 
                     <td>
-                      <a href="javascript:void(0)">Fashion</a>
+                      <a href="javascript:void(0)">{{ brand.is_top ? 'Top' : 'Buttom' }}</a>
                     </td>
-
-                    <td>2</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-cross">
+                    <td class="td-cross" v-if="brand.status=='inactive'">
                       <span class="lnr lnr-cross-circle"></span>
                     </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <router-link
-                            to="/order_detail"
-                            href="javascript:void(0)"
-                          >
-                            <span class="lnr lnr-eye"></span>
-                          </router-link>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/2.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>2</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-check">
-                      <span class="lnr lnr-checkmark-circle"></span>
+                    <td class="td-check" v-else>
+                      <span class="lnr lnr-checkmark-circle"> </span>
                     </td>
 
                     <td>
                       <ul>
+
                         <li>
                           <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
+                            <i class="fas fa-edit text-success"></i>
                           </a>
                         </li>
 
                         <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/3.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>1</td>
-
-                    <td class="td-price">$86.35</td>
-
-                    <td class="td-check">
-                      <span class="lnr lnr-checkmark-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-trash"></span>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/4.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>2</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-cross">
-                      <span class="lnr lnr-cross-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/1.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>1</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-cross">
-                      <span class="lnr lnr-cross-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/2.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>1</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-check">
-                      <span class="lnr lnr-checkmark-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/3.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>2</td>
-
-                    <td class="td-price">$121.43</td>
-
-                    <td class="td-check">
-                      <span class="lnr lnr-checkmark-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/4.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>3</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-check">
-                      <span class="lnr lnr-checkmark-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/2.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>2</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-cross">
-                      <span class="lnr lnr-cross-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/2.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>1</td>
-
-                    <td class="td-price">$95.97</td>
-
-                    <td class="td-cross">
-                      <span class="lnr lnr-cross-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img
-                        src="@/assets/images/profile/3.jpg"
-                        class="img-fluid"
-                        alt=""
-                      />
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Outwear & Coats</a>
-                    </td>
-
-                    <td>
-                      <a href="javascript:void(0)">Fashion</a>
-                    </td>
-
-                    <td>1</td>
-
-                    <td class="td-price">$86.35</td>
-
-                    <td class="td-cross">
-                      <span class="lnr lnr-cross-circle"></span>
-                    </td>
-
-                    <td>
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-eye"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <span class="lnr lnr-pencil"></span>
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="far fa-trash-alt theme-color"></i>
-                          </a>
+                            <button class="border-none bg-transparent" @click="deleteBrand(brand.id)"><i class="far fa-trash-alt theme-color"></i></button>
                         </li>
                       </ul>
                     </td>
@@ -589,10 +124,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  title: "Voxo-Products",
-};
-</script>
 
-<style></style>
+
+<style>
+  .border-none{
+    border: none;
+  }
+</style>
