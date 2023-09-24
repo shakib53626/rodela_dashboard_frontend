@@ -33,14 +33,6 @@
       ]
     },
     {
-      "name": "Application",
-      "subHeading": "Ready To Use Apps",
-      "type": "title",
-      "mainClasses": "sidebar-main-title sidebar-main-title-2",
-      "class": "sidebar-main-title sidebar-main-title-2",
-      "application": true
-    },
-    {
       "name": "Orders",
       "icon": "archive",
       "active": false,
@@ -58,23 +50,6 @@
         {
           "name": "Order Tracking",
           "path": "/order_tracking",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "name": "Vendors",
-      "icon": "users",
-      "active": false,
-      "children": [
-        {
-          "name": "Vendor List",
-          "path": "/vendor_list",
-          "type": "link"
-        },
-        {
-          "name": "Create Vendor",
-          "path": "/create_vendor",
           "type": "link"
         }
       ]
@@ -102,6 +77,58 @@
       ]
     },
     {
+      "name": "Brand",
+      "icon": "box",
+      "active": false,
+      "children": [
+        {
+          "name": "Brands",
+          "path": "/brands",
+          "type": "link"
+        },
+        {
+          "name": "Add New Brands",
+          "path": "/add_brand",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "icon": "box",
+      "active": false,
+      "children": [
+        {
+          "name": "Categories",
+          "path": "/categories",
+          "type": "link"
+        },
+        {
+          "name": "Add New categories",
+          "path": "/add_category",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "name": "Product Size",
+      "icon": "box",
+      "active": false,
+      "children": [
+        {
+          "name": "Sizes",
+          "path": "/products_sizes",
+          "type": "link"
+        },
+        {
+          "name": "Add New size",
+          "path": "/add_size",
+          "type": "link"
+        }
+      ]
+    },
+    
+    {
       "name": "Product",
       "icon": "box",
       "active": false,
@@ -114,23 +141,6 @@
         {
           "name": "Add New Products",
           "path": "/add_product",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "name": "Menus",
-      "icon": "align-left",
-      "active": false,
-      "children": [
-        {
-          "name": "Menu Lists",
-          "path": "/menu_lists",
-          "type": "link"
-        },
-        {
-          "name": "Create Menu",
-          "path": "/create_menu",
           "type": "link"
         }
       ]
@@ -165,12 +175,6 @@
       "type": "link"
     },
     {
-      "icon": "phone",
-      "name": "Support Ticket",
-      "path": "support_ticket",
-      "type": "hyperlink"
-    },
-    {
       "name": "Settings",
       "icon": "settings",
       "active": false,
@@ -181,18 +185,6 @@
           "type": "link"
         }
       ]
-    },
-    {
-      "name": "Reports",
-      "icon": "file-text",
-      "path": "/reports",
-      "type": "link"
-    },
-    {
-      "name": "List Page",
-      "icon": "list",
-      "path": "/list_page",
-      "type": "link"
     },
     {
       "name": "Log In",

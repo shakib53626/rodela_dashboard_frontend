@@ -11,6 +11,11 @@ import "@/assets/css/vendors/font-awesome.css";
 import vueFeather from "vue-feather";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import VueApexCharts from "vue3-apexcharts";
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
+
+
 const app = createApp(App);
 app.use(store);
 app.use(CKEditor);

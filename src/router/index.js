@@ -8,11 +8,11 @@ import add_new_user from "../pages/general/users/add_new_user.vue";
 import order_list from "../pages/application/orders/order_list.vue";
 import order_detail from "../pages/application/orders/order_detail.vue";
 import order_tracking from "../pages/application/orders/order_tracking.vue";
-import vendor_list from "../pages/application/vendors/vendor_list.vue";
-import create_vendor from "../pages/application/vendors/create_vendor.vue";
 import translation from "../pages/application/localization/translation.vue";
 import currency_rate from "../pages/application/localization/currency_rate.vue";
 import taxes from "../pages/application/localization/taxes.vue";
+import brands from "../pages/application/brand/brands.vue";
+import add_brand from "../pages/application/brand/add_new_brand.vue";
 import products from "../pages/application/product/products.vue";
 import add_product from "../pages/application/product/add_new_product.vue";
 import menu_lists from "../pages/application/menus/menu_lists.vue";
@@ -21,10 +21,7 @@ import coupon_list from "../pages/application/coupons/coupon_list.vue";
 import create_coupon from "../pages/application/coupons/create_coupon.vue";
 import product_review from "../pages/application/product_review.vue";
 import invoice from "../pages/application/invoice.vue";
-import support_ticket from "../pages/application/support_ticket.vue";
 import profile_setting from "../pages/application/settings/profile_setting.vue";
-import reports from "../pages/application/reports.vue";
-import list_page from "../pages/application/list_page.vue";
 import log_in from "../pages/application/log_in.vue";
 import forgot_password from "../pages/application/forgot_password.vue";
 import register from "../pages/application/register.vue";
@@ -80,18 +77,6 @@ const routes = [
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Order Tracking" } },
   },
   {
-    path: "/vendor_list",
-    name: "vendor_list",
-    component: vendor_list,
-    meta: { layout: layout1, breadcrumb: { type: 2, title: "Vendor List" } },
-  },
-  {
-    path: "/create_vendor",
-    name: "create_vendor",
-    component: create_vendor,
-    meta: { layout: layout1, breadcrumb: { type: 2, title: "Create Vendor" } },
-  },
-  {
     path: "/translation",
     name: "translation",
     component: translation,
@@ -108,6 +93,18 @@ const routes = [
     name: "taxes",
     component: taxes,
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Taxes" } },
+  },
+  {
+    path: "/brands",
+    name: "brands",
+    component: brands,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Brands" } },
+  },
+  {
+    path: "/add_brand",
+    name: "add_brand",
+    component: add_brand,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Brand" } },
   },
   {
     path: "/products",
@@ -158,12 +155,6 @@ const routes = [
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Invoice" } },
   },
   {
-    path: "/support_ticket",
-    name: "support_ticket",
-    component: support_ticket,
-    meta: { layout: layout1, breadcrumb: { type: 2, title: "Support Ticket" } },
-  },
-  {
     path: "/profile_setting",
     name: "profile_setting",
     component: profile_setting,
@@ -171,21 +162,6 @@ const routes = [
       layout: layout1,
       breadcrumb: { type: 2, title: "Profile Setting" },
     },
-  },
-  {
-    path: "/reports",
-    name: "reports",
-    component: reports,
-    meta: {
-      layout: layout1,
-      breadcrumb: { type: 2, title: "Report" },
-    },
-  },
-  {
-    path: "/list_page",
-    name: "list_page",
-    component: list_page,
-    meta: { layout: layout1, breadcrumb: { type: 2, title: "List Page" } },
   },
   {
     path: "/log_in",
