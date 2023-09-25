@@ -13,6 +13,7 @@ import currency_rate from "../pages/application/localization/currency_rate.vue";
 import taxes from "../pages/application/localization/taxes.vue";
 import brands from "../pages/application/brand/brands.vue";
 import add_brand from "../pages/application/brand/add_new_brand.vue";
+import edit_brand from "../pages/application/brand/edit_brand.vue";
 import products from "../pages/application/product/products.vue";
 import add_product from "../pages/application/product/add_new_product.vue";
 import menu_lists from "../pages/application/menus/menu_lists.vue";
@@ -105,6 +106,12 @@ const routes = [
     name: "add_brand",
     component: add_brand,
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Brand" } },
+  },
+  {
+    path: "/edit_brand/:id",
+    name: "update.brand",
+    component: edit_brand,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Edit Brand" } },
   },
   {
     path: "/products",

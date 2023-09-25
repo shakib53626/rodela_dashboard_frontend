@@ -9,15 +9,8 @@
     try {
       const res = await axios.get('/admin/brands');
       brandData.value = res.data.result.data;
-      console.log(brandData.value);
     } catch (error) {
-        console.error("Error:", error);
     }
-  }
-
-  const deleteBrand = async(id) =>{
-    // const res = await axios.delete(`/admin/brands/${id}`)
-    alert(`Delete Code is Not Updated. Delete Id is = ${id}`)
   }
 
   onMounted(() => {
@@ -60,7 +53,7 @@
                     </td>
 
                     <td>
-                      <a href="javascript:void(0)">{{ brand.is_top ? 'Top' : 'Buttom' }}</a>
+                      <a href="javascript:void(0)">{{ brand.is_top ? 'Top' : 'Normal' }}</a>
                     </td>
                     <td class="td-cross" v-if="brand.status=='inactive'">
                       <span class="lnr lnr-cross-circle"></span>
@@ -73,13 +66,7 @@
                       <ul>
 
                         <li>
-                          <a href="javascript:void(0)">
-                            <i class="fas fa-edit text-success"></i>
-                          </a>
-                        </li>
-
-                        <li>
-                            <button class="border-none bg-transparent" @click="deleteBrand(brand.id)"><i class="far fa-trash-alt theme-color"></i></button>
+                          <router-link :to="{name:'update.brand', params:{ id: brand.id}}"> <i class="fas fa-edit text-success"></i> </router-link>
                         </li>
                       </ul>
                     </td>
