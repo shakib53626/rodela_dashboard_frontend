@@ -104,7 +104,7 @@
           "type": "link"
         },
         {
-          "name": "Add New categories",
+          "name": "Add New category",
           "path": "/add_category",
           "type": "link"
         }

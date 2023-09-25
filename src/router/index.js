@@ -11,9 +11,14 @@ import order_tracking from "../pages/application/orders/order_tracking.vue";
 import translation from "../pages/application/localization/translation.vue";
 import currency_rate from "../pages/application/localization/currency_rate.vue";
 import taxes from "../pages/application/localization/taxes.vue";
+
 import brands from "../pages/application/brand/brands.vue";
 import add_brand from "../pages/application/brand/add_new_brand.vue";
 import edit_brand from "../pages/application/brand/edit_brand.vue";
+
+import categories from "../pages/application/category/categories.vue";
+import add_category from "../pages/application/category/add_new_category.vue";
+
 import products from "../pages/application/product/products.vue";
 import add_product from "../pages/application/product/add_new_product.vue";
 import menu_lists from "../pages/application/menus/menu_lists.vue";
@@ -112,6 +117,18 @@ const routes = [
     name: "update.brand",
     component: edit_brand,
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Edit Brand" } },
+  },
+  {
+    path: "/categories",
+    name: "categories",
+    component: categories,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Categories" } },
+  },
+  {
+    path: "/add_category",
+    name: "add_category",
+    component: add_category,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Category" } },
   },
   {
     path: "/products",
