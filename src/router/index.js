@@ -18,6 +18,11 @@ import edit_brand from "../pages/application/brand/edit_brand.vue";
 
 import categories from "../pages/application/category/categories.vue";
 import add_category from "../pages/application/category/add_new_category.vue";
+import edit_category from "../pages/application/category/edit_categories.vue";
+
+import sliders from "../pages/application/slider/sliders.vue";
+import add_slider from "../pages/application/slider/add_new_slider.vue";
+import edit_slider from "../pages/application/slider/edit_slider.vue";
 
 import products from "../pages/application/product/products.vue";
 import add_product from "../pages/application/product/add_new_product.vue";
@@ -131,6 +136,12 @@ const routes = [
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Category" } },
   },
   {
+    path: "/edit_category/:id",
+    name: "update.category",
+    component: edit_category,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Edit Category" } },
+  },
+  {
     path: "/products",
     name: "products",
     component: products,
@@ -142,6 +153,29 @@ const routes = [
     component: add_product,
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Product" } },
   },
+
+
+  {
+    path: "/sliders",
+    name: "sliders",
+    component: sliders,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Sliders" } },
+  },
+  {
+    path: "/add_slider",
+    name: "add_slider",
+    component: add_slider,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Slider" } },
+  },
+  {
+    path: "/edit_slider/:id",
+    name: "update.slider",
+    component: edit_slider,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Edit Slider" } },
+  },
+
+
+
   {
     path: "/menu_lists",
     name: "menu_lists",

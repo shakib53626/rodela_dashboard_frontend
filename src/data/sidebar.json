@@ -146,6 +146,23 @@
       ]
     },
     {
+      "name": "Slider",
+      "icon": "box",
+      "active": false,
+      "children": [
+        {
+          "name": "sliders",
+          "path": "/sliders",
+          "type": "link"
+        },
+        {
+          "name": "Add New Slider",
+          "path": "/add_slider",
+          "type": "link"
+        }
+      ]
+    },
+    {
       "name": "Coupons",
       "icon": "tag",
       "active": false,

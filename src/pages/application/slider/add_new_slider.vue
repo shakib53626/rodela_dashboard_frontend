@@ -4,34 +4,32 @@ import {ref} from 'vue';
 import router from "@/router";
 import { useRoute } from "vue-router";
 
-const name = ref('');
+const title = ref('');
 const image = ref('');
 const status = ref('active');
-const is_top = ref('0');
 const route = useRoute();
 const handleFileChange = (e) =>{
   image.value = e.target.files[0];
 }
 
 const submit = async () => {
-  if(!name.value || !image.value){
+  if(!title.value || !image.value){
       alert("Plase fill the filed");
   }else{
     
     try {
       const formdata = new FormData();
-      formdata.append('name', name.value)
+      formdata.append('title', title.value)
       formdata.append('image', image.value)
       formdata.append('status', status.value)
-      formdata.append('is_top', is_top.value)
 
-      const response = await axios.post("/admin/categories", formdata);
+      const response = await axios.post("/admin/sliders", formdata);
       if(response.data.success){
         alert("Data Upload Successfully");
-        name.value = '';
+        title.value = '';
         image.value = '';
       }
-      router.push({ name: 'categories' }); // Use router.push to navigate
+      router.push({ name: 'sliders' }); // Use router.push to navigate
     } catch (error) {
     }
   }
@@ -49,34 +47,25 @@ const submit = async () => {
           <div class="card">
             <div class="card-body">
               <div class="card-header-2">
-                <h5>Category Information</h5>
+                <h5>New Slider Form</h5>
               </div>
 
               <form class="theme-form theme-form-2 mega-form" @submit.prevent="submit">
                 <div class="row">
                   <div class="mb-4 row align-items-center">
-                    <label class="form-label-title col-sm-2 mb-0" >Category Name</label >
+                    <label class="form-label-title col-sm-2 mb-0" >Slider Title</label >
                     <div class="col-sm-10">
-                      <input class="form-control" name="name" type="text" placeholder="Enter Your Category Name" v-model="name"/>
+                      <input class="form-control" name="name" type="text" placeholder="Enter Your Slider title" v-model="title"/>
                     </div>
                   </div>
 
                   <div class="mb-4 row align-items-center">
-                    <label class="col-sm-2 col-form-label form-label-title" >Category Status</label >
-                    <div class="col-sm-4">
+                    <label class="col-sm-2 col-form-label form-label-title" >Slider Status</label >
+                    <div class="col-sm-10">
                       <select class="js-example-basic-single w-100" name="status" v-model="status" >
-                        <option disabled>Select Category Status</option>
+                        <option disabled>Select Slider Status</option>
                         <option value="active" selected>Active</option>
                         <option value="inactive">Inactive</option>
-                      </select>
-                    </div>
-
-                    <label class="col-sm-2 col-form-label form-label-title" >Category is Top</label >
-                    <div class="col-sm-4">
-                      <select class="js-example-basic-single w-100" name="is_top" v-model="is_top" >
-                        <option disabled>It's a top Category ?</option>
-                        <option value=1>Yes</option>
-                        <option value=0>No</option>
                       </select>
                     </div>
                   </div>
@@ -89,7 +78,7 @@ const submit = async () => {
                       <!-- <input class="form-control form-choose" name="image" type="file" id="formFileMultiple"/> -->
                     </div>
                   </div>
-                  <button type="submit" class="category-btn">Add Category</button>
+                  <button type="submit" class="slider-btn">Add Category</button>
                 </div>
               </form>
             </div>
@@ -102,7 +91,7 @@ const submit = async () => {
 
 
 <style scoped>
-  .category-btn{
+  .slider-btn{
     background-color: #06adb9;
     color: #fff;
     padding: 8px 25px;
@@ -112,7 +101,7 @@ const submit = async () => {
     border: none;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
-  .category-btn:hover{
+  .slider-btn:hover{
     background-color: #038c96;
   }
   .theme-form select{

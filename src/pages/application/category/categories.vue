@@ -66,7 +66,7 @@
                       <ul>
 
                         <li>
-                          <!-- <router-link :to="{name:'update.category', params:{ id: category.id}}"> <i class="fas fa-edit text-success"></i> </router-link> -->
+                          <router-link :to="{name:'update.category', params:{ id: category.id}}"> <i class="fas fa-edit text-success"></i> </router-link>
                         </li>
                       </ul>
                     </td>
