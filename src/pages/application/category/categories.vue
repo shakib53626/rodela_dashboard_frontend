@@ -22,6 +22,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
+          <div class="row"><div class="col-md-12 d-flex justify-content-end"><router-link :to="{name:'add_category'}" class="btn btn-info mb-2" >Add New Category</router-link></div></div>
           <div>
             <div class="table-responsive table-desi table-product">
               <table class="table table-bordered all-package">

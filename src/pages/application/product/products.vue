@@ -26,6 +26,7 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
+          <div class="row"><div class="col-md-12 d-flex justify-content-end"><router-link :to="{name:'add_product'}" class="btn btn-info mb-2" >Add New Product</router-link></div></div>
           <div>
             <div class="table-responsive table-desi table-product">
               <table class="table table-1d all-package">
@@ -57,10 +58,10 @@
                     </td>
 
                     <td>
-                      <a href="javascript:void(0)">{{ product.category_id }}</a>
+                      <a href="javascript:void(0)">{{ product.category.name }}</a>
                     </td>
                     <td>
-                      <a href="javascript:void(0)">{{ product.brand_id }}</a>
+                      <a href="javascript:void(0)">{{ product.brand.name }}</a>
                     </td>
 
                     <td>{{ product.current_stock }}</td>

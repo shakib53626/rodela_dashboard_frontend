@@ -48,8 +48,9 @@ const submit = async () => {
         <div class="col-sm-12">
           <div class="card">
             <div class="card-body">
-              <div class="card-header-2">
-                <h5>Category Information</h5>
+              <div class="card-header-2 d-flex justify-content-between">
+                <h5>New Category Information</h5>
+                <router-link :to="{name:'categories'}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back</router-link>
               </div>
 
               <form class="theme-form theme-form-2 mega-form" @submit.prevent="submit">

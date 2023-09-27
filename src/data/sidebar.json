@@ -1,15 +1,6 @@
 {
   "data": [
     {
-      "name": "General",
-      "subHeading": "Dashboard & Users",
-      "type": "title",
-      "title": true,
-      "application": true,
-      "mainClasses": "sidebar-main-title sidebar-main-title-3",
-      "class": "sidebar-link sidebar-title link-nav"
-    },
-    {
       "name": "Dashboard",
       "path": "/",
       "type": "link",
@@ -76,8 +67,9 @@
         }
       ]
     },
+    
     {
-      "name": "Brand",
+      "name": "Product",
       "icon": "box",
       "active": false,
       "children": [
@@ -87,60 +79,18 @@
           "type": "link"
         },
         {
-          "name": "Add New Brands",
-          "path": "/add_brand",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "name": "Category",
-      "icon": "box",
-      "active": false,
-      "children": [
-        {
           "name": "Categories",
           "path": "/categories",
           "type": "link"
         },
         {
-          "name": "Add New category",
-          "path": "/add_category",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "name": "Product Size",
-      "icon": "box",
-      "active": false,
-      "children": [
-        {
-          "name": "Sizes",
+          "name": "Product Sizes",
           "path": "/products_sizes",
           "type": "link"
         },
         {
-          "name": "Add New size",
-          "path": "/add_size",
-          "type": "link"
-        }
-      ]
-    },
-    
-    {
-      "name": "Product",
-      "icon": "box",
-      "active": false,
-      "children": [
-        {
           "name": "Products",
           "path": "/products",
-          "type": "link"
-        },
-        {
-          "name": "Add New Products",
-          "path": "/add_product",
           "type": "link"
         }
       ]

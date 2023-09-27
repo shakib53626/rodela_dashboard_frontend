@@ -26,14 +26,19 @@ const submit = async() => {
     alert("Please fill your name field")
   }else{
     try {
-      const formdata = new FormData();
-      formdata.append('name', name.value)
-      formdata.append('status', status.value)
-      formdata.append('is_top', is_top.value)
+      const formData = new FormData();
+      formData.append('name', name.value)
+      formData.append('status', status.value)
+      formData.append('is_top', is_top.value)
 
-      const response = await axios.put(`/admin/brands/${route.params.id}`);
-      console.log(response.data);
-      console.log(formdata);
+      const response = await axios
+        .put(`admin/brands/${route.params.id}`, formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+        });
+
       if(response.data.success){
         alert("Image Upload Successfully");
       }
@@ -61,8 +66,9 @@ onMounted(() => {
         <div class="col-sm-12">
           <div class="card">
             <div class="card-body">
-              <div class="card-header-2">
+              <div class="card-header-2 d-flex justify-content-between">
                 <h5>Brand Information</h5>
+                <router-link :to="{name:'brands'}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back</router-link>
               </div>
 
               <form class="theme-form theme-form-2 mega-form" @submit.prevent="submit">
