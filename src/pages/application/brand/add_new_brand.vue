@@ -1,3 +1,57 @@
+<script setup>
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import axios from 'axios';
+import {ref} from 'vue';
+import router from "@/router";
+import { useRoute } from "vue-router";
+
+const name = ref('');
+const image = ref('');
+const status = ref('active');
+const is_top = ref('0');
+const route = useRoute();
+const imgPreview = ref();
+
+const handleFileChange = (e) =>{
+  image.value = e.target.files[0];
+  let reader = new FileReader();
+  reader.addEventListener("load", function(){
+    imgPreview.value = reader.result;
+  }.bind(this), false);
+  if(image.value){
+    if(/\.(jpe?g|png|gif)$/i.test(image.value.name)){
+      reader.readAsDataURL(image.value)
+    }
+  }
+}
+
+const submit = async () => {
+  if(!name.value || !image.value){
+      alert("Plase fill the filed");
+  }else{
+    
+    try {
+      const formdata = new FormData();
+      formdata.append('name', name.value)
+      formdata.append('image', image.value)
+      formdata.append('status', status.value)
+      formdata.append('is_top', is_top.value)
+
+      const response = await axios.post("/admin/brands", formdata);
+      if(response.data.success){
+        alert("Image Upload Successfully");
+        name.value = '';
+        image.value = '';
+      }
+      router.push({ name: 'brands' }); // Use router.push to navigate
+    } catch (error) {
+    }
+  }
+}
+
+
+</script>
+
 <template>
   <div class="row">
     <div class="col-12">
@@ -44,6 +98,7 @@
                     <label class="col-sm-2 col-form-label form-label-title" >Image</label >
                     <div class="col-sm-10">
                       <input class="form-control form-choose" name="image" type="file" id="formFileMultiple" @change="handleFileChange" />
+                      <img :src="imgPreview" width="100" alt="" class="mt-2">
                       <!-- <input class="form-control form-choose" name="image" type="file" id="formFileMultiple"/> -->
                     </div>
                   </div>
@@ -58,53 +113,7 @@
   </div>
 </template>
 
-<script setup>
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from 'axios';
-import {ref} from 'vue';
-import router from "@/router";
-import { useRoute } from "vue-router";
 
-const name = ref('');
-const image = ref('');
-const status = ref('active');
-const is_top = ref('0');
-const route = useRoute();
-const handleFileChange = (e) =>{
-  image.value = e.target.files[0];
-}
-
-const submit = async () => {
-  if(!name.value || !image.value){
-      alert("Plase fill the filed");
-  }else{
-    
-    try {
-      const formdata = new FormData();
-      formdata.append('name', name.value)
-      formdata.append('image', image.value)
-      formdata.append('status', status.value)
-      formdata.append('is_top', is_top.value)
-
-      const response = await axios.post("/admin/brands", formdata);
-      if(response.data.success){
-        alert("Image Upload Successfully");
-        name.value = '';
-        image.value = '';
-      }
-      router.push({ name: 'brands' }); // Use router.push to navigate
-    } catch (error) {
-    }
-  }
-}
-
-
-
-
-
-
-
-</script>
 <style scoped>
   .brand-btn{
     background-color: #06adb9;
