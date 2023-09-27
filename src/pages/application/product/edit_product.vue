@@ -30,7 +30,7 @@ const getBrand = async() => {
   }
 }
 
-// Product add code here
+// Product Edit code here
 const name = ref();
 const buy_price = ref();
 const mrp_price = ref();

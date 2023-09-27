@@ -26,6 +26,8 @@ import edit_slider from "../pages/application/slider/edit_slider.vue";
 
 import products from "../pages/application/product/products.vue";
 import add_product from "../pages/application/product/add_new_product.vue";
+import edit_product from "../pages/application/product/edit_product.vue";
+
 import menu_lists from "../pages/application/menus/menu_lists.vue";
 import create_menu from "../pages/application/menus/create_menu.vue";
 import coupon_list from "../pages/application/coupons/coupon_list.vue";
@@ -152,6 +154,12 @@ const routes = [
     name: "add_product",
     component: add_product,
     meta: { layout: layout1, breadcrumb: { type: 2, title: "Add Product" } },
+  },
+  {
+    path: "/edit_product/:id",
+    name: "update.product",
+    component: edit_product,
+    meta: { layout: layout1, breadcrumb: { type: 2, title: "Edit Product" } },
   },
 
 

@@ -7,7 +7,6 @@
   const getProducts = async() => {
     try{
       const res = await axios.get('/admin/products');
-      console.log(res);
       productsData.value = res.data.result.data
     }catch(error){
 
@@ -78,14 +77,14 @@
                     <td>
                       <ul>
                         <li>
-                          <a><i class="fas fa-edit text-success"></i></a>
+                          <router-link :to="{name:'update.product', params:{ id: product.id}}"> <i class="fas fa-edit text-success"></i> </router-link>
                         </li>
 
-                        <li>
+                        <!-- <li>
                           <a href="javascript:void(0)">
                             <i class="far fa-trash-alt theme-color"></i>
                           </a>
-                        </li>
+                        </li> -->
                       </ul>
                     </td>
                   </tr>
