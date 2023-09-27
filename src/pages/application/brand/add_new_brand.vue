@@ -94,7 +94,6 @@ const submit = async () => {
       }
       router.push({ name: 'brands' }); // Use router.push to navigate
     } catch (error) {
-      console.error("Error:", error);
     }
   }
 }
