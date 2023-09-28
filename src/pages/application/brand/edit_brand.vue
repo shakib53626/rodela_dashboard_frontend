@@ -7,7 +7,7 @@ import { useRoute } from "vue-router";
 const name = ref('');
 const image = ref('');
 const status = ref('');
-const is_top = ref();
+const is_top = ref(0);
 const route = useRoute();
 const imagePreview = ref();
 
@@ -16,7 +16,8 @@ const getBrand = async() => {
   name.value = res.data.result.name
   image.value = res.data.result.image
   status.value = res.data.result.status
-  is_top.value = res.data.result.is_top
+  is_top.value = res.data.result.is_top == true ? 1 : 0
+
 }
 const onFileChange = (e) => {
   image.value = e.target.files[0];

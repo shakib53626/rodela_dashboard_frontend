@@ -7,18 +7,29 @@ import { useRoute } from "vue-router";
 const name = ref('');
 const image = ref('');
 const status = ref('');
-const is_top = ref('');
+const is_top = ref(0);
 const route = useRoute();
+const imagePreview = ref();
+
 
 const onFileChange = (e) => {
-  image.value = e.target.file[0];
+  image.value = e.target.files[0];
+  let reader = new FileReader();
+  reader.addEventListener("load", function(){
+    imagePreview.value = reader.result;
+  }.bind(this), false);
+  if(image.value){
+    if(/\.(jpe?g|png|gif)$/i.test(image.value.name)){
+      reader.readAsDataURL(image.value)
+    }
+  }
 }
 const getBrand = async() => {
   const res = await axios.get(`admin/categories/${route.params.id}`)
   name.value = res.data.result.name
   image.value = res.data.result.image
   status.value = res.data.result.status
-  is_top.value = res.data.result.is_top
+  is_top.value = res.data.result.is_top == true ? 1 : 0
 }
 
 const submit = async() => {
@@ -26,14 +37,18 @@ const submit = async() => {
     alert("Please fill your name field")
   }else{
     try {
-      const formdata = new FormData();
-      formdata.append('name', name.value)
-      formdata.append('status', status.value)
-      formdata.append('is_top', is_top.value)
+      const formData = new FormData();
+      formData.append('name', name.value);
+      formData.append('status', status.value);
+      formData.append('is_top', is_top.value);
+      formData.append('_method', 'put');
 
-      const response = await axios.put(`/admin/categories/${route.params.id}`);
-      console.log(response.data);
-      console.log(formdata);
+      // Check if a new image has been selected
+      if (imagePreview.value) {
+        formData.append('image', image.value);
+      }
+
+      const response = await axios.post(`/admin/categories/${route.params.id}`, formData);
       if(response.data.success){
         alert("Image Upload Successfully");
       }
@@ -89,8 +104,8 @@ onMounted(() => {
                     <div class="col-sm-4">
                       <select class="js-example-basic-single w-100" name="is_top" v-model="is_top" >
                         <option disabled>It's a top Brand ?</option>
-                        <option value='true'>Yes</option>
-                        <option value='false'>No</option>
+                        <option value='1'>Yes</option>
+                        <option value='0'>No</option>
                       </select>
                     </div>
                   </div>
@@ -100,7 +115,7 @@ onMounted(() => {
                     <label class="col-sm-2 col-form-label form-label-title" >Image</label >
                     <div class="col-sm-10">
                       <input class="form-control form-choose" name="image" type="file" id="formFileMultiple" @change="onFileChange" />
-                      <img :src="`http://127.0.0.1:8000/images/categories/${image}`" width="100" alt="" class="mt-2">
+                      <img :src="imagePreview==null?`http://127.0.0.1:8000/images/categories/${image}`:imagePreview" width="100" alt="" class="mt-2">
                       <!-- <input class="form-control form-choose" name="image" type="file" id="formFileMultiple"/> -->
                     </div>
                   </div>

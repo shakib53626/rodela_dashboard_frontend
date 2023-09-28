@@ -7,10 +7,21 @@ import { useRoute } from "vue-router";
 const name = ref('');
 const image = ref('');
 const status = ref('active');
-const is_top = ref('0');
+const is_top = ref(0);
 const route = useRoute();
+const imagePreview = ref();
+
 const handleFileChange = (e) =>{
   image.value = e.target.files[0];
+  let reader = new FileReader();
+  reader.addEventListener("load", function(){
+    imagePreview.value = reader.result;
+  }.bind(this), false);
+  if(image.value){
+    if(/\.(jpe?g|png|gif)$/i.test(image.value.name)){
+      reader.readAsDataURL(image.value)
+    }
+  }
 }
 
 const submit = async () => {
@@ -87,6 +98,7 @@ const submit = async () => {
                     <label class="col-sm-2 col-form-label form-label-title" >Image</label >
                     <div class="col-sm-10">
                       <input class="form-control form-choose" name="image" type="file" id="formFileMultiple" @change="handleFileChange" />
+                      <img :src="imagePreview==null?`http://127.0.0.1:8000/images/categories/${image}`:imagePreview" width="100" alt="" class="mt-2">
                       <!-- <input class="form-control form-choose" name="image" type="file" id="formFileMultiple"/> -->
                     </div>
                   </div>

@@ -8,9 +8,19 @@ const title = ref('');
 const image = ref('');
 const status = ref('');
 const route = useRoute();
+const imagePreview = ref();
 
 const onFileChange = (e) => {
   image.value = e.target.files[0];
+  let reader = new FileReader();
+  reader.addEventListener("load", function(){
+    imagePreview.value = reader.result;
+  }.bind(this), false);
+  if(image.value){
+    if(/\.(jpe?g|png|gif)$/i.test(image.value.name)){
+      reader.readAsDataURL(image.value)
+    }
+  }
 }
 const getSlider = async() => {
   const res = await axios.get(`admin/sliders/${route.params.id}`)
@@ -24,14 +34,17 @@ const submit = async() => {
     alert("Please fill your title field")
   } else {
     try {
-      const formdata = new FormData();
-      formdata.append('title', title.value);
-      formdata.append('image', image.value);
-      formdata.append('status', status.value);
+      const formData = new FormData();
+      formData.append('title', title.value);
+      formData.append('status', status.value);
+      formData.append('_method', 'put');
 
-      const response = await axios.put(`/admin/sliders/${route.params.id}`, formdata);
-      console.log(response.data);
-      console.log(formdata);
+      // Check if a new image has been selected
+      if (imagePreview.value) {
+        formData.append('image', image.value);
+      }
+
+      const response = await axios.post(`/admin/sliders/${route.params.id}`, formData);
       if(response.data.success){
         alert("Image Upload Successfully");
       }
@@ -89,7 +102,7 @@ onMounted(() => {
                     <label class="col-sm-2 col-form-label form-label-title" >Image</label >
                     <div class="col-sm-10">
                       <input class="form-control form-choose" name="image" type="file" id="formFileMultiple" @change="onFileChange" />
-                      <img :src="`http://127.0.0.1:8000/images/sliders/${image}`" width="100" alt="" class="mt-2">
+                      <img :src="imagePreview==null?`http://127.0.0.1:8000/images/sliders/${image}`:imagePreview" width="100" alt="" class="mt-2">
                       <!-- <input class="form-control form-choose" name="image" type="file" id="formFileMultiple"/> -->
                     </div>
                   </div>
